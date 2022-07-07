@@ -12,21 +12,23 @@ fi
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
-full_dir=$(pwd)/$(dirname $0)
+path=$(dirname $(realpath $0))
+shift
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected
     exit 0
 fi
 
-session_exists=$(tmux has-session -t=$selected_name 2> /dev/null)
+initialize="0"
 
-if ! $session_exists; then
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
+    initialize="1"
 fi
 
 tmux switch-client -t $selected_name
 
-if ! $session_exists; then
-    sh $full_dir/windows/initializer.sh $selected_name
+if [ "$initialize" = "1" ]; then
+    sh $path/../windows/all-runner.sh $selected_name start
 fi

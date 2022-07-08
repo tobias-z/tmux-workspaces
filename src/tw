@@ -1,23 +1,20 @@
 #!/bin/bash
 
 action=$1
-cwd=$2
-window=$3
 project_root=$(dirname $(realpath $0))
 
 case $action in
     "select")
-        sh $project_root/actions/select.sh $cwd
+        sh $project_root/actions/select.sh $2
         ;;
     "start")
-        sh $project_root/windows/all-runner.sh $(tmux display-message -p "#S") start
+        sh $project_root/actions/lifetime.sh start $2
         ;;
     "stop")
-        sh $project_root/windows/all-runner.sh $(tmux display-message -p "#S") stop
+        sh $project_root/actions/lifetime.sh stop $2
         ;;
     "restart")
-        current_session=$(tmux display-message -p "#S")
-        sh $project_root/windows/all-runner.sh $current_session stop
-        sh $project_root/windows/all-runner.sh $current_session start
+        sh $project_root/actions/lifetime.sh stop $2
+        sh $project_root/actions/lifetime.sh start $2
         ;;
 esac

@@ -7,7 +7,6 @@ path=$(dirname $(realpath $0))
 
 if [ -n "$specific_window" ]; then
     script="$TMUX_WORKSPACES/$selected_name/$specific_window/$action"
-    dir_name=$(dirname $0)
 
     if [ -e "$script" ]; then
         while read line; do

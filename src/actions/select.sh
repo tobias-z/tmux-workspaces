@@ -1,9 +1,11 @@
 #!/bin/bash
 
+var1="$HOME/dev $HOME/dev/latex $HOME/dev/scripts $HOME/dev/npm-packages $HOME/dev/rust $HOME/dev/vscode $HOME/dev/jetbrains $HOME/config"
+
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/dev ~/dev/latex ~/dev/scripts ~/dev/npm-packages ~/dev/rust ~/dev/vscode ~/dev/jetbrains ~/.config -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find $var1 -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then

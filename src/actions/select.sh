@@ -1,23 +1,20 @@
 #!/bin/bash
 
-var1="$HOME/dev $HOME/dev/latex $HOME/dev/scripts $HOME/dev/npm-packages $HOME/dev/rust $HOME/dev/vscode $HOME/dev/jetbrains $HOME/config"
-
-if [[ $# -eq 1 ]]; then
+if [ $# -eq 1 ]; then
     selected=$1
 else
-    selected=$(find $var1 -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find $TW_PATHS -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
-if [[ -z $selected ]]; then
+if [ -z $selected ]; then
     exit 0
 fi
 
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 path=$(dirname $(realpath $0))
-shift
 
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+if [ -z $TMUX ] && [ -z $tmux_running ]; then
     tmux new-session -s $selected_name -c $selected
     exit 0
 fi

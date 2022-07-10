@@ -6,7 +6,7 @@ selected_name=$(tmux display-message -p "#S")
 path=$(dirname $(realpath $0))
 
 if [ -n "$specific_window" ]; then
-    script="$TMUX_WORKSPACES/$selected_name/$specific_window/$action"
+    script="$TW_CONFIG/$selected_name/$specific_window/$action"
 
     if [ -e "$script" ]; then
         while read line; do

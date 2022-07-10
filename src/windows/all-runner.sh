@@ -13,10 +13,8 @@ dir_name=$(dirname $0)
 
 for dir in $session_initializer_dir/*; do
     sh $dir_name/key-sender.sh $dir $selected_name
-    file="$dir/$action"
+    file="$dir/$action.sh"
     if [ -e "$file" ]; then
-        while read line; do
-            sh $dir_name/key-sender.sh $dir $selected_name "$line"
-        done < $file
+        sh $dir_name/key-sender.sh $dir $selected_name "source $file"
     fi
 done

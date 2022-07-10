@@ -7,7 +7,9 @@ target="$session_name:$clean_name"
 
 if ! tmux has-session -t $target 2> /dev/null; then
     tmux neww -dn $clean_name -t $session_name
+    sleep 1
 fi
 
 shift 2
+tmux send-keys -t $target C-c C-d
 tmux send-keys -t $target "$*" Enter

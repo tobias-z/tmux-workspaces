@@ -53,7 +53,7 @@ export TW_PATHS="$HOME/dev/scripts $HOME/personal $HOME/example"
    Your workspaces will be named after the folder choosen from the select command.
    If you select a folder called `$HOME/dev/scripts/my-workspace` then your workspace will be `my-workspace`
 2. Each directory inside of this directory will correspond to a window which will be created when you start the workspace
-3. These directories can optionally contain a `start` and `stop` file which line by line will be executed in their respective tmux window
+3. These directories can optionally contain a `start.sh` and `stop.sh` shell script will be executed in their respective tmux window
 
 Example:
 
@@ -62,17 +62,28 @@ Example:
 mkdir my-workspace
 cd my-workspace
 mkdir 2_test
-echo "echo started" > 2_test/start
-echo "echo stopped" > 2_test/stop
+echo "echo started" > 2_test/start.sh
+echo "echo stopped" > 2_test/stop.sh
 ```
 
 ### Commands
 
-_All commands are executed through 'tw `Command`'_
+_All commands are executed through `tw COMMAND`_
 
-- select (opens fzf on the configured `TW_PATHS` and switches to the choosen workspace)
-  - Optionally an extra argument can be supplied to predefine the workspace you want to select (`tw select /home/tobiasz/.config/nvim`)
-- start/stop (runs all start or stop scripts in every window defined in your current workspace)
-  - Optionally an extra argument can be supplied to only run on a single window (`tw stop 2_test`)
-- restart (runs stop first then start)
+- `select` (opens fzf on the configured `TW_PATHS` and switches to the choosen workspace)
+  - Optionally an extra argument can be supplied to predefine the workspace you want to select `tw select /home/tobiasz/.config/nvim`
+- `start/stop` (runs all start or stop scripts in every window defined in your current workspace)
+  - Optionally an extra argument can be supplied to only run on a single window `tw stop 2_test`
+- `restart` (runs stop first then start)
   - Can also be run on a single window
+
+### Example Tmux Bindings
+
+```tmux
+# $HOME/.tmux.conf
+bind-key -r f run-shell "tmux neww tw select"
+bind-key -r S run-shell "tw restart"
+bind-key -r u run-shell "tw select $HOME/"
+```
+
+where `tmux neww` is used when running `tw select` and no args, so that it creates a new window for our fzf searching

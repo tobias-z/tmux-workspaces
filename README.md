@@ -5,6 +5,8 @@
 Tmux Workspaces allows for easy management of multiple workspaces. It allows you to define which windows you want for each session.
 You are able to create start scripts for each window which will be run when the workspace loads.
 
+_A lot of the selection code has been yoinked from ThePrimeagen as well as some ideas of workflow_
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 </div>

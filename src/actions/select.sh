@@ -15,7 +15,7 @@ tmux_running=$(pgrep tmux)
 path=$(dirname $(realpath $0))
 
 if [ -z $TMUX ] && [ -z $tmux_running ]; then
-    tmux new-session -s $selected_name -c $selected -n $TW_MAIN_WINDOW && sh $path/../windows/all-runner.sh $selected_name start
+    tmux new-session -s $selected_name -c $selected -n $TW_MAIN_WINDOW
     exit 0
 fi
 

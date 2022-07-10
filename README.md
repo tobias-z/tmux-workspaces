@@ -35,6 +35,7 @@ chmod +x ./tmux-workspaces/src/tw
 1. Put the src folder into your PATH so that you can run the tw command
 2. Set the TW_CONFIG variable which is where you will place all your configuration for workspace windows
 3. Set the TW_PATHS variable to the directories the select to search
+4. Set the TW_MAIN_WINDOW variable to what you want your first window to be called (this is done so that you are able to create start and stop scripts for the main window aswell)
 
 Example:
 
@@ -43,6 +44,7 @@ Example:
 export PATH=$HOME/dev/scripts/tmux-workspaces/src:$PATH
 export TW_CONFIG="$HOME/.config/tw"
 export TW_PATHS="$HOME/dev/scripts $HOME/personal $HOME/example"
+export TW_MAIN_WINDOW="main"
 ```
 
 ## Usage

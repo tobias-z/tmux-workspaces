@@ -12,5 +12,5 @@ if [ -n "$specific_window" ]; then
         sh $path/../windows/key-sender.sh $specific_window $selected_name "source $script"
     fi
 else
-    sh $path/../windows/all-runner.sh $(tmux display-message -p "#S") $action
+    sh $path/../windows/all-runner.sh $selected_name $action
 fi

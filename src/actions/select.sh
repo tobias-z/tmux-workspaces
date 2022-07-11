@@ -29,5 +29,5 @@ fi
 tmux switch-client -t $selected_name
 
 if [ "$initialize" = "1" ]; then
-    sh $path/../windows/all-runner.sh $selected_name start
+    sh $path/../windows/all-runner.sh $selected_name $selected start
 fi

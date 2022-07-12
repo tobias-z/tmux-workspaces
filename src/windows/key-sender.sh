@@ -18,5 +18,5 @@ if [ "$branch_name" = "$TW_MAIN_WINDOW" ]; then
     shift
 fi
 
-tmux send-keys -t $target C-c C-d
+tmux send-keys -t $target C-c
 tmux send-keys -t $target "$*" Enter

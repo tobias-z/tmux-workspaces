@@ -66,22 +66,33 @@ Example:
 # In `TW_CONFIG`
 mkdir my-workspace
 cd my-workspace
-mkdir 2_test
-echo "echo started" > 2_test/start.sh
-echo "echo stopped" > 2_test/stop.sh
+mkdir 2_run
+echo "mvn exec:java" > 2_run/start.sh
+echo "echo stopped" > 2_run/stop.sh
 ```
+
+You could also do something like
+
+```sh
+mkdir 3_db
+echo 'nvim -c "DBUI"' > 3_db/start.sh
+```
+
+making it automatically open in the Dadbod UI window
 
 ### Environment variables
 
 Each 'workspace' or 'window' configured inside of your `TW_CONFIG` directory can contain a `.env` which will be read into the session or window when they are started.
 This means that you are able to have specific environments for each of your workspaces.
 
+`REMINDER`: These variables are sent to the windows ones started through `export KEY=VALUE`, making them very visible to everyone. So please do not add things you may not want leaked such as database passwords that are not only on your local machine.
+
 Example:
 
 ```sh
 # In `TW_CONFIG`
 echo 'XMLLINT_INDENT="    "' > my-workspace/.env # Will be applied to all windows that workspace
-echo "SPECIAL=ENV" > my-workspace/2_test/.env # Will only be applied to the 2_test window
+echo "SPECIAL=ENV" > my-workspace/2_run/.env # Will only be applied to the 2_run window
 ```
 
 The window .env files are run after the session's, so overriding variables can be done in the window's .env file
@@ -93,7 +104,7 @@ _All commands are executed through `tw COMMAND`_
 - `select` (opens fzf on the configured `TW_PATHS` and switches to the choosen workspace)
   - Optionally an extra argument can be supplied to predefine the workspace you want to select `tw select /home/tobiasz/.config/nvim`
 - `start/stop` (runs all start or stop scripts in every window defined in your current workspace)
-  - Optionally an extra argument can be supplied to only run on a single window `tw stop 2_test`
+  - Optionally an extra argument can be supplied to only run on a single window `tw stop 2_run`
 - `restart` (runs stop first then start)
   - Can also be run on a single window
 

@@ -118,3 +118,7 @@ bind-key -r u run-shell "tw select $HOME/"
 ```
 
 where `tmux neww` is used when running `tw select` and no args, so that it creates a new window for our fzf searching
+
+## Contributing
+
+I am by no means a script expert, so expect weird things to be done in the code, but any pr's or issues are appreciated!

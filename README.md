@@ -67,7 +67,7 @@ Example:
 mkdir my-workspace
 cd my-workspace
 mkdir 2_run
-echo "mvn exec:java" > 2_run/start.sh
+echo "mvn spring-boot:run" > 2_run/start.sh
 echo "echo stopped" > 2_run/stop.sh
 ```
 

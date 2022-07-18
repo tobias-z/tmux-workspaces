@@ -8,15 +8,25 @@ target="$session_name:$clean_name"
 if ! tmux has-session -t $target 2> /dev/null; then
     selected_path=$3
     tmux neww -dn $clean_name -t $session_name -c "$selected_path"
-    shift
-    sleep 1
 fi
 
-shift 2
+sleep 1
 
-if [ "$branch_name" = "$TW_MAIN_WINDOW" ]; then
-    shift
-fi
+for last; do true; done
 
-tmux send-keys -t $target C-c
-tmux send-keys -t $target "$*" Enter
+case $last in
+    "envmain")
+        tmux send-keys -t $target "export FOO=BAR" Enter
+        ;;
+esac
+
+case $last in
+    *start*)
+        tmux send-keys -t $target "export FOO=BAR" Enter
+        tmux send-keys -t $target "$last" Enter
+        ;;
+    *stop*)
+        tmux send-keys -t $target C-c
+        tmux send-keys -t $target "$last" Enter
+        ;;
+esac

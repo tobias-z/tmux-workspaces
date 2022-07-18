@@ -10,8 +10,6 @@ if ! tmux has-session -t $target 2> /dev/null; then
     tmux neww -dn $clean_name -t $session_name -c "$selected_path"
 fi
 
-sleep 1
-
 for last; do true; done
 
 set_env() {

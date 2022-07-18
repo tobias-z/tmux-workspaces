@@ -17,6 +17,7 @@ _A lot of the selection code has been yoinked from ThePrimeagen as well as some 
 - Customizable windows for each workspace.
 - Create custom start scripts for each window to run when the workspace is created
 - Create custom stop scripts for each window
+- Create custom environment variables for each session or window
 - Ability to run these scripts through the `tw` command
 
 ## Requirements
@@ -69,6 +70,21 @@ mkdir 2_test
 echo "echo started" > 2_test/start.sh
 echo "echo stopped" > 2_test/stop.sh
 ```
+
+### Environment variables
+
+Each 'workspace' or 'window' configured inside of your `TW_CONFIG` directory can contain a `.env` which will be read into the session or window when they are started.
+This means that you are able to have specific environments for each of your workspaces.
+
+Example:
+
+```sh
+# In `TW_CONFIG`
+echo 'XMLLINT_INDENT="    "' > my-workspace/.env # Will be applied to all windows that workspace
+echo "SPECIAL=ENV" > my-workspace/2_test/.env # Will only be applied to the 2_test window
+```
+
+The window .env files are run after the session's, so overriding variables can be done in the window's .env file
 
 ### Commands
 

@@ -5,8 +5,6 @@ specific_window=$2
 selected_name=$(tmux display-message -p "#S")
 path=$(dirname $(realpath $0))
 
-echo "args: $@"
-
 if [ -n "$specific_window" ]; then
     script="$TW_CONFIG/$selected_name/$specific_window/$action.sh"
 

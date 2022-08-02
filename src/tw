@@ -3,18 +3,20 @@
 action=$1
 project_root=$(dirname $(realpath $0))
 
+shift
+
 case $action in
     "select")
-        sh $project_root/actions/select.sh $2
+        sh $project_root/actions/select.sh $@
         ;;
     "start")
-        sh $project_root/actions/lifetime.sh start $2
+        sh $project_root/actions/lifetime.sh start $@
         ;;
     "stop")
-        sh $project_root/actions/lifetime.sh stop $2
+        sh $project_root/actions/lifetime.sh stop $@
         ;;
     "restart")
-        sh $project_root/actions/lifetime.sh stop $2
-        sh $project_root/actions/lifetime.sh start $2
+        sh $project_root/actions/lifetime.sh stop $@
+        sh $project_root/actions/lifetime.sh start $@
         ;;
 esac

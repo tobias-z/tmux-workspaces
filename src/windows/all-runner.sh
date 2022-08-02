@@ -9,8 +9,6 @@ fi
 
 action=$3
 
-shift 3
-
 session_initializer_dir="$TW_CONFIG/$selected_name"
 
 if [ ! -d "$session_initializer_dir" ]; then
@@ -33,6 +31,6 @@ for dir in $session_initializer_dir/*; do
     fi
     file="$dir/$action.sh"
     if [ -e "$file" ]; then
-        sh $dir_name/key-sender.sh $dir $selected_name $selected_path "source $file $@"
+        sh $dir_name/key-sender.sh $dir $selected_name $selected_path "source $file $4"
     fi
 done

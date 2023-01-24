@@ -14,7 +14,7 @@ if [ -n "$specific_window" ]; then
         main_window="$TW_CONFIG/$selected_name/$TW_MAIN_WINDOW"
         if [ ! -d "$main_window" ]; then
             if [ "$action" = "start" ]; then
-                sh $path/../windows/key-sender.sh $main_window $selected_name $selected_path "envmain" $@
+                sh $path/../windows/key-sender.sh $main_window $selected_name $selected_path "envmain"
             fi
         fi
     fi

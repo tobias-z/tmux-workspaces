@@ -6,7 +6,7 @@ case $action in
         sh $project_root/actions/select.sh $2
         ;;
     "start")
-        eh $project_root/actions/lifetime.sh start $2 $3
+        sh $project_root/actions/lifetime.sh start $2 $3
         ;;
     "stop")
         sh $project_root/actions/lifetime.sh stop $2 $3

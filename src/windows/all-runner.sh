@@ -19,7 +19,7 @@ dir_name=$(dirname $0)
 
 main_window=$session_initializer_dir/$TW_MAIN_WINDOW
 
-if [ ! -d "$main_window" ]; then
+if [ ! d-d "$main_window" ]; then
     if [ "$action" = "start" ]; then
         sh $dir_name/key-sender.sh $main_window $selected_name "envmain"
     fi
